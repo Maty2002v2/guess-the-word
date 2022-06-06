@@ -1,10 +1,13 @@
 <template>
   <div>
-    <word-block-component :word="word"></word-block-component>
+    <word-block-component
+      :wordArray="lettersOfTheWordArray"
+    ></word-block-component>
   </div>
 </template>
 
 <script>
+import { ref } from "vue";
 import wordBlockComponent from "./wordBlockComponent.vue";
 
 export default {
@@ -12,8 +15,19 @@ export default {
   components: { wordBlockComponent },
   setup() {
     let word = "vue";
+    let lettersOfTheWordArray = ref([]);
 
-    return { word };
+    let i = 0;
+    while (i < word.length) {
+      lettersOfTheWordArray.value.push({
+        letter: word.charAt(i),
+        focus: false,
+        disabled: false,
+      });
+      i++;
+    }
+
+    return { word, lettersOfTheWordArray };
   },
 };
 </script>
