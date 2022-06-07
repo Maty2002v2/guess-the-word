@@ -1,11 +1,16 @@
 <template>
   <div>
-    <input type="text" :disabled="disabledFlag" ref="input" />
+    <input
+      v-model="value"
+      type="text"
+      @input="goToTheNextLetter($event)"
+      :class="{ goodAnswer: checkingTheLetter }"
+    />
   </div>
 </template>
 
 <script>
-import { ref, watch } from "vue";
+import { ref, computed } from "vue";
 
 export default {
   name: "letterBlockComponent",
@@ -13,24 +18,22 @@ export default {
     letter: {
       type: String,
     },
-    focusFlag: {
-      type: Boolean,
-    },
-    disabledFlag: {
-      type: Boolean,
-    },
   },
   setup(props) {
-    const input = ref(null);
-    watch(
-      () => props.focusFlag,
-      (first, second) => {
-        input.value.focus();
-        first, second;
+    function goToTheNextLetter(event) {
+      event.target.disabled = true;
+      if (event.target.parentNode.nextSibling.firstChild) {
+        event.target.parentNode.nextSibling.firstChild.focus();
       }
-    );
+    }
 
-    return { input };
+    let value = ref("");
+
+    const checkingTheLetter = computed(() => {
+      return value.value.toLowerCase() == props.letter;
+    });
+
+    return { value, checkingTheLetter, goToTheNextLetter };
   },
 };
 </script>
@@ -38,5 +41,9 @@ export default {
 <style scoped>
 div {
   display: inline-block;
+}
+
+.goodAnswer {
+  color: lime;
 }
 </style>
