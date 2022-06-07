@@ -19,11 +19,14 @@ export default {
       type: String,
     },
   },
-  setup(props) {
+  emits: ["completeWord"],
+  setup(props, ctx) {
     function goToTheNextLetter(event) {
       event.target.disabled = true;
       if (event.target.parentNode.nextSibling.firstChild) {
         event.target.parentNode.nextSibling.firstChild.focus();
+      } else {
+        ctx.emit("completeWord");
       }
     }
 

@@ -1,26 +1,45 @@
 <template>
   <div>
     <word-block-component
-      :yourTurnFlag="true"
+      v-for="x in 3"
+      :key="x"
+      :yourTurnFlag="counterOfCompletedLines === x"
       :word="word"
-    ></word-block-component>
-    <word-block-component
-      :yourTurnFlag="true"
-      :word="word"
+      @complete-word="nextLineOfWord"
     ></word-block-component>
   </div>
 </template>
 
 <script>
+import { ref, reactive, onMounted } from "vue";
 import wordBlockComponent from "./wordBlockComponent.vue";
 
 export default {
   name: "boardGameComponent",
   components: { wordBlockComponent },
   setup() {
-    let word = "vue";
+    let word = "ptasznik";
+    let wordBlockComponentsArray = reactive([]);
+    let counterOfCompletedLines = ref(0);
 
-    return { word };
+    onMounted(() => {
+      wordBlockComponentsArray = document.querySelectorAll(".wordBlock");
+      wordBlockComponentsArray[
+        counterOfCompletedLines.value
+      ].firstElementChild.firstElementChild.focus();
+    });
+
+    function nextLineOfWord() {
+      counterOfCompletedLines.value++;
+
+      if (counterOfCompletedLines.value < wordBlockComponentsArray.length) {
+        wordBlockComponentsArray[
+          counterOfCompletedLines.value
+        ].firstElementChild.firstElementChild.focus();
+      }
+    }
+
+    return { word, counterOfCompletedLines, nextLineOfWord };
   },
 };
 </script>
