@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import "@/styles/globalStyles.css";
 import boardGameComponent from "./components/boardGameComponent.vue";
 
 export default {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="boardGame">
     <word-block-component
       v-for="x in 3"
       :key="x"

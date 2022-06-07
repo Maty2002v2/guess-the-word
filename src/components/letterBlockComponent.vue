@@ -5,6 +5,7 @@
       type="text"
       @input="goToTheNextLetter($event)"
       :class="{ goodAnswer: checkingTheLetter }"
+      class="letterBlock"
     />
   </div>
 </template>
@@ -43,10 +44,19 @@ export default {
 
 <style scoped>
 div {
-  display: inline-block;
+  /* display: inline-block; */
+}
+
+input[type="text"] {
+  border: none;
+  border-radius: 4px;
+}
+
+input[type="text"]:disabled {
+  background: #f0f0f0;
 }
 
 .goodAnswer {
-  color: lime;
+  color: #42b983;
 }
 </style>
