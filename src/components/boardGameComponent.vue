@@ -1,10 +1,11 @@
 <template>
-  <div class="boardGame">
+  <div class="boardGame" v-if="loading">
+    <h1 class="category">Kategoria: {{ wordObject.data.category }}</h1>
     <word-block-component
       v-for="x in 3"
       :key="x"
       :yourTurnFlag="counterOfCompletedLines === x"
-      :word="word"
+      :word="wordObject.data.word"
       @complete-word="nextLineOfWord"
     ></word-block-component>
   </div>
@@ -18,28 +19,51 @@ export default {
   name: "boardGameComponent",
   components: { wordBlockComponent },
   setup() {
-    let word = "ptasznik";
-    let wordBlockComponentsArray = reactive([]);
+    let wordObject = reactive({ data: "" });
+    let wordBlockComponentsArray = reactive({ value: [] });
     let counterOfCompletedLines = ref(0);
+    let loading = ref(false);
 
     onMounted(() => {
-      wordBlockComponentsArray = document.querySelectorAll(".wordBlock");
-      wordBlockComponentsArray[
+      fetchData();
+    });
+
+    function fetchData() {
+      fetch("http://matikster1.ct8.pl")
+        .then((response) => response.json())
+        .then((response) => {
+          wordObject.data = response;
+          loading.value = true;
+        })
+        .then(() => {
+          wordBlockComponentsArray.value =
+            document.querySelectorAll(".wordBlock");
+          setFocus();
+        })
+        .catch((err) => console.error(err));
+    }
+
+    function setFocus() {
+      wordBlockComponentsArray.value[
         counterOfCompletedLines.value
       ].firstElementChild.firstElementChild.focus();
-    });
+    }
 
     function nextLineOfWord() {
       counterOfCompletedLines.value++;
-
-      if (counterOfCompletedLines.value < wordBlockComponentsArray.length) {
-        wordBlockComponentsArray[
-          counterOfCompletedLines.value
-        ].firstElementChild.firstElementChild.focus();
+      if (
+        counterOfCompletedLines.value < wordBlockComponentsArray.value.length
+      ) {
+        setFocus();
       }
     }
 
-    return { word, counterOfCompletedLines, nextLineOfWord };
+    return {
+      wordObject,
+      counterOfCompletedLines,
+      nextLineOfWord,
+      loading,
+    };
   },
 };
 </script>

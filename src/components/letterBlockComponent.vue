@@ -57,6 +57,7 @@ input[type="text"]:disabled {
 }
 
 .goodAnswer {
-  color: #42b983;
+  background: #42b983 !important;
+  color: #ffffff;
 }
 </style>
