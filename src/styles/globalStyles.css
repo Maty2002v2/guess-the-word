@@ -4,20 +4,35 @@ body {
   background: #2c3e50;
 }
 
+.container {
+  /* max-width: 100vw; */
+  text-align: center;
+}
+
 .boardGame {
   display: flex;
   flex-direction: column;
   /* text-align: center; */
   /* align-items: center; */
-  justify-content: center;
-  width: 100%;
-  margin-top: 20vh;
+  /* justify-content: center; */
+  max-width: 90vw;
+  margin-top: 10vh;
+  margin-left: auto;
+  margin-right: auto;
+  /* margin: 0 auto; */
   /* height: 100vh; */
 }
 
 .category {
   color: #ffffff;
   margin: 30px auto;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+
+.category i {
+  color: #42b983;
 }
 
 .wordBlock {

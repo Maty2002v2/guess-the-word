@@ -1,6 +1,8 @@
 <template>
   <div class="boardGame" v-if="loading">
-    <h1 class="category">Kategoria: {{ wordObject.data.category }}</h1>
+    <h1 class="category">
+      Kategoria: <i>{{ wordObject.data.category }}</i>
+    </h1>
     <word-block-component
       v-for="x in 3"
       :key="x"
