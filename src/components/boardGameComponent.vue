@@ -1,52 +1,48 @@
 <template>
-  <div class="boardGame" v-if="loading">
+  <div class="boardGame" v-if="readyToRender">
     <h1 class="category">
-      Kategoria: <i>{{ wordObject.data.category }}</i>
+      Kategoria: <i>{{ word.category }}</i>
     </h1>
     <word-block-component
       v-for="x in 5"
       :key="x"
       :yourTurnFlag="counterOfCompletedLines === x"
-      :word="wordObject.data.word"
+      :word="word.word"
       @complete-word="nextLineOfWord"
     ></word-block-component>
-    {{ sotre.heart }}
   </div>
 </template>
 
 <script>
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted, onUpdated } from "vue";
+import { storeToRefs } from "pinia";
+import { useWordsStore } from "@/stores/WordsStore";
 import wordBlockComponent from "./wordBlockComponent.vue";
-import { useMainStore } from "@/stores/MainStore";
 
 export default {
   name: "boardGameComponent",
   components: { wordBlockComponent },
   setup() {
-    let wordObject = reactive({ data: "" });
     let wordBlockComponentsArray = reactive({ value: [] });
     let counterOfCompletedLines = ref(0);
-    let loading = ref(false);
-    let sotre = useMainStore();
+    let readyToRender = ref(false);
+
+    const { word, dataIsDownloaded } = storeToRefs(useWordsStore());
+    const { fetchPosts } = useWordsStore();
 
     onMounted(() => {
-      fetchData();
-    });
-
-    function fetchData() {
-      fetch("http://matikster1.ct8.pl")
-        .then((response) => response.json())
-        .then((response) => {
-          wordObject.data = response;
-          loading.value = true;
+      fetchPosts()
+        .then(() => {
+          readyToRender.value = true;
         })
         .then(() => {
-          wordBlockComponentsArray.value =
-            document.querySelectorAll(".wordBlock");
           setFocus();
-        })
-        .catch((err) => console.error(err));
-    }
+        });
+    });
+
+    onUpdated(() => {
+      wordBlockComponentsArray.value = document.querySelectorAll(".wordBlock");
+    });
 
     function setFocus() {
       wordBlockComponentsArray.value[
@@ -64,11 +60,11 @@ export default {
     }
 
     return {
-      wordObject,
+      word,
       counterOfCompletedLines,
       nextLineOfWord,
-      loading,
-      sotre,
+      readyToRender,
+      dataIsDownloaded,
     };
   },
 };
