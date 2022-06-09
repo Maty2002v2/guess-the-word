@@ -20,7 +20,7 @@ export const useWordsStore = defineStore("Words", {
       this.wordObject = null;
       this.loading = true;
       try {
-        this.wordObject = await fetch("http://localhost/coski/testMysql.php")
+        this.wordObject = await fetch("http://matikster1.ct8.pl")
           .then((response) => response.json())
           .then((response) => {
             return response;

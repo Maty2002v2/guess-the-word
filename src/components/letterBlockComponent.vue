@@ -20,14 +20,15 @@ export default {
       type: String,
     },
   },
-  emits: ["completeWord"],
-  setup(props, ctx) {
+  emits: ["completeWord", "press"],
+  setup(props, { emit }) {
     function goToTheNextLetter(event) {
+      emit("press", event);
       event.target.disabled = true;
       if (event.target.parentNode.nextSibling.firstChild) {
         event.target.parentNode.nextSibling.firstChild.focus();
       } else {
-        ctx.emit("completeWord");
+        emit("completeWord");
       }
     }
 

@@ -1,25 +1,27 @@
 <template>
-  <div>
+  <div v-show="getFinishGame">
     <h2>
-      <i :class="[win ? 'winGame' : 'lostGame']">{{
-        win ? "Gratulacje, " : "No niestety, "
+      <i :class="[getGameResult ? 'winGame' : 'lostGame']">{{
+        getGameResult ? "Gratulacje, " : "No niestety, "
       }}</i>
-      {{ win ? "udało Ci się!" : "może innym razem." }}
+      {{ getGameResult ? "udało Ci się!" : "może innym razem." }}
     </h2>
-    <button-restart-game :win="win" />
+    <button-restart-game :win="getGameResult" />
   </div>
 </template>
 
 <script>
+import { storeToRefs } from "pinia";
+import { useMainStore } from "@/stores/MainStore";
 import buttonRestartGame from "./buttonRestartGame.vue";
 
 export default {
   components: { buttonRestartGame },
   name: "playAgaonComponent",
-  props: {
-    win: {
-      type: Boolean,
-    },
+  setup() {
+    const { getFinishGame, getGameResult } = storeToRefs(useMainStore());
+
+    return { getFinishGame, getGameResult };
   },
 };
 </script>

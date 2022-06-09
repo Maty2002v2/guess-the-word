@@ -1,14 +1,23 @@
 <template>
-  <button :class="[win ? 'winButton' : 'lostButotn']">Jeszcze raz</button>
+  <button :class="[win ? 'winButton' : 'lostButotn']" @click="fetchWord">
+    Jeszcze raz
+  </button>
 </template>
 
 <script>
+import { useWordsStore } from "@/stores/WordsStore";
+
 export default {
   name: "buttonRestartGame",
   props: {
     win: {
       type: Boolean,
     },
+  },
+  setup() {
+    const { fetchWord } = useWordsStore();
+
+    return { fetchWord };
   },
 };
 </script>

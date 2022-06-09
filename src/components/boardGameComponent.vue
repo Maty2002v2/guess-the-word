@@ -10,17 +10,16 @@
       :word="getWord"
       @complete-word="nextLineOfWord"
     ></word-block-component>
-    <button @click="changeWin">klick</button>
   </div>
 </template>
 
 <script>
 import { ref, reactive, onMounted, onUpdated } from "vue";
 import { storeToRefs } from "pinia";
-import { useWordsStore } from "@/stores/WordsStore";
 import { useMainStore } from "@/stores/MainStore";
+import { useWordsStore } from "@/stores/WordsStore";
 import wordBlockComponent from "./wordBlockComponent.vue"; //Poprawić i albo wszedzie sciezki katologow albo @
-
+//dodać loader na plansze (kiedy slowo sie pobiera)
 export default {
   name: "boardGameComponent",
   components: { wordBlockComponent },
@@ -28,19 +27,17 @@ export default {
     let wordBlockComponentsArray = reactive({ value: [] });
     let counterOfCompletedLines = ref(0);
 
+    const { changeFinishGame } = useMainStore();
+
     const { getWord, getCategpry, wordObject } = storeToRefs(useWordsStore());
     const { fetchWord } = useWordsStore();
-
-    const { changeWin } = useMainStore();
 
     onMounted(() => {
       fetchWord();
     });
 
     onUpdated(() => {
-      console.log("update ogolnie");
       if (document.querySelectorAll(".wordBlock").length) {
-        console.log("update w ifie");
         wordBlockComponentsArray.value =
           document.querySelectorAll(".wordBlock");
         if (
@@ -48,7 +45,6 @@ export default {
         ) {
           setFocus();
         }
-        // setFocus();
       }
     });
 
@@ -60,15 +56,20 @@ export default {
 
     function nextLineOfWord() {
       counterOfCompletedLines.value++;
+
+      if (
+        counterOfCompletedLines.value === wordBlockComponentsArray.value.length
+      ) {
+        changeFinishGame();
+      }
     }
 
     return {
       getWord,
       getCategpry,
+      wordObject,
       counterOfCompletedLines,
       nextLineOfWord,
-      wordObject,
-      changeWin,
     };
   },
 };

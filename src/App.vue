@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <boardGameComponent />
-    <playAgainComponent :win="true" />
+    <playAgainComponent />
   </div>
 </template>
 
