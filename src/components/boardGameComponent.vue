@@ -4,18 +4,20 @@
       Kategoria: <i>{{ wordObject.data.category }}</i>
     </h1>
     <word-block-component
-      v-for="x in 3"
+      v-for="x in 5"
       :key="x"
       :yourTurnFlag="counterOfCompletedLines === x"
       :word="wordObject.data.word"
       @complete-word="nextLineOfWord"
     ></word-block-component>
+    {{ sotre.heart }}
   </div>
 </template>
 
 <script>
 import { ref, reactive, onMounted } from "vue";
 import wordBlockComponent from "./wordBlockComponent.vue";
+import { useMainStore } from "@/stores/MainStore";
 
 export default {
   name: "boardGameComponent",
@@ -25,6 +27,7 @@ export default {
     let wordBlockComponentsArray = reactive({ value: [] });
     let counterOfCompletedLines = ref(0);
     let loading = ref(false);
+    let sotre = useMainStore();
 
     onMounted(() => {
       fetchData();
@@ -65,6 +68,7 @@ export default {
       counterOfCompletedLines,
       nextLineOfWord,
       loading,
+      sotre,
     };
   },
 };
