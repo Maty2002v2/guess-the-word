@@ -6,6 +6,7 @@
       :letter="letter"
       @press="saveUserWord($event)"
       @complete-word="completeWord"
+      @click.prevent="$emit('lineChange', lineNumber)"
     ></letter-block-component>
   </div>
 </template>
@@ -22,6 +23,9 @@ export default {
     yourTurnFlag: {
       type: Boolean,
     },
+    lineNumber: {
+      type: Number,
+    },
     word: {
       type: String,
     },
@@ -29,7 +33,7 @@ export default {
   setup(props, { emit }) {
     let userWord = ref("");
 
-    const { changeFinishGame, changeGameResult } = useMainStore();
+    const { finishGame, changeGameResult } = useMainStore();
 
     function saveUserWord(event) {
       userWord.value += event.target.value;
@@ -37,7 +41,7 @@ export default {
 
     function completeWord() {
       if (userWord.value === props.word) {
-        changeFinishGame();
+        finishGame();
         changeGameResult(true);
       }
       emit("completeWord");

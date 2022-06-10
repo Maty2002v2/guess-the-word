@@ -22,9 +22,7 @@ export const useWordsStore = defineStore("Words", {
       try {
         this.wordObject = await fetch("http://matikster1.ct8.pl")
           .then((response) => response.json())
-          .then((response) => {
-            return response;
-          });
+          .then((response) => response);
       } catch (error) {
         this.error = error;
       } finally {

@@ -1,10 +1,11 @@
 <template>
-  <button :class="[win ? 'winButton' : 'lostButotn']" @click="fetchWord">
+  <button :class="[win ? 'winButton' : 'lostButotn']" @click="restart">
     Jeszcze raz
   </button>
 </template>
 
 <script>
+import { useMainStore } from "@/stores/MainStore"; //pomyslec czy nie zmienic restart na reset (wszedzie)
 import { useWordsStore } from "@/stores/WordsStore";
 
 export default {
@@ -15,9 +16,14 @@ export default {
     },
   },
   setup() {
+    const { restartGame } = useMainStore();
     const { fetchWord } = useWordsStore();
 
-    return { fetchWord };
+    function restart() {
+      fetchWord().then(() => restartGame()); //lub state.$reset
+    }
+
+    return { restart };
   },
 };
 </script>

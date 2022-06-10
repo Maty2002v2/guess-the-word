@@ -13,12 +13,16 @@ export const useMainStore = defineStore("Main", {
     getGameResult: (state) => state.winningGame,
   },
   actions: {
-    changeFinishGame() {
+    finishGame() {
       this.finishedGame = true;
     },
     /* win = true | lose = false */ //pozadnie opisac metody (dokumentacja)
     changeGameResult(result) {
       this.winningGame = result;
+    },
+    restartGame() {
+      this.finishedGame = false;
+      this.winningGame = false;
     },
   },
 });
