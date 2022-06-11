@@ -2,15 +2,12 @@
   <div class="container">
     <board-game-component></board-game-component>
     <play-again-component></play-again-component>
-    <tip-container-component v-show="tipAvailable"></tip-container-component>
+    <tip-container-component></tip-container-component>
   </div>
 </template>
 
 <script>
 import "@/styles/globalStyles.css";
-import { storeToRefs } from "pinia";
-import { computed } from "vue";
-import { useMainStore } from "@/stores/MainStore";
 import boardGameComponent from "./components/boardGameComponent.vue";
 import playAgainComponent from "./components/playAgainComponent.vue";
 import tipContainerComponent from "./components/tip/tipContainerComponent.vue";
@@ -21,17 +18,6 @@ export default {
     boardGameComponent,
     playAgainComponent,
     tipContainerComponent,
-  },
-  setup() {
-    const { getFinishGame, getNumberOfTipsAvailable } = storeToRefs(
-      useMainStore()
-    );
-
-    const tipAvailable = computed(() => {
-      return !getFinishGame.value && getNumberOfTipsAvailable.value > 0;
-    });
-
-    return { tipAvailable };
   },
 };
 </script>

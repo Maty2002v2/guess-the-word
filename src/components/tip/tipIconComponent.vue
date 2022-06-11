@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div class="icon noselect" @click="showATip">
+    <div
+      class="icon noselect"
+      :class="{ blockade: isBlockade }"
+      @click="showATip"
+    >
       ? <span class="counterTip">{{ getNumberOfTipsAvailable }}</span>
     </div>
   </div>
@@ -8,22 +12,27 @@
 
 <script>
 import { storeToRefs } from "pinia";
-import { useWordsStore } from "@/stores/WordsStore";
 import { useMainStore } from "@/stores/MainStore";
 
 export default {
   name: "tipBoxComponent",
-  setup() {
-    const { changeNumberOfTipsAvailable } = useMainStore();
+  props: {
+    isBlockade: {
+      type: Boolean,
+    },
+  },
+  setup(props) {
+    const { changeNumberOfTipsAvailable, switchTipFlag } = useMainStore();
     const { getNumberOfTipsAvailable } = storeToRefs(useMainStore());
 
-    const { getTip } = storeToRefs(useWordsStore());
-
     function showATip() {
-      changeNumberOfTipsAvailable(-1);
+      if (!props.isBlockade) {
+        changeNumberOfTipsAvailable(-1);
+        switchTipFlag();
+      }
     }
 
-    return { getTip, getNumberOfTipsAvailable, showATip };
+    return { getNumberOfTipsAvailable, showATip };
   },
 };
 </script>
@@ -43,6 +52,11 @@ export default {
   align-items: center;
   font-weight: 700;
   cursor: pointer;
+}
+
+.blockade {
+  opacity: 0.5;
+  cursor: none;
 }
 
 .counterTip {

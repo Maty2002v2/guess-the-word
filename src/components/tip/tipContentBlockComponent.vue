@@ -1,7 +1,9 @@
 <template>
   <div>
     <blockquote>
-      <p>{{ tip }}</p>
+      <p>
+        <i>{{ tip }}</i>
+      </p>
     </blockquote>
   </div>
 </template>
@@ -19,14 +21,15 @@ export default {
 
 <style scoped>
 blockquote {
-  background: #f9f9f9;
-  border-left: 10px solid #ccc;
+  background: #2c3e50;
+  border-left: 10px solid #42b983;
+  color: #ffffff;
   margin: 1.5em 10px;
   padding: 0.5em 10px;
   quotes: "\201C""\201D""\2018""\2019";
 }
 blockquote:before {
-  color: #ccc;
+  color: #ffffff;
   content: open-quote;
   font-size: 4em;
   line-height: 0.1em;

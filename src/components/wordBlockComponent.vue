@@ -43,6 +43,7 @@ export default {
       if (userWord.value === props.word) {
         finishGame();
         changeGameResult(true);
+        return;
       }
       emit("completeWord");
     }

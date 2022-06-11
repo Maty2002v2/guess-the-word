@@ -1,17 +1,35 @@
 <template>
   <div class="tipContainer">
-    <tip-icon-component></tip-icon-component>
-    <tip-content-block-component></tip-content-block-component>
+    <tip-icon-component
+      v-show="whetherTipIsAvailable"
+      :isBlockade="getShowTipFlag"
+    ></tip-icon-component>
+    <tip-content-block-component
+      v-show="getShowTipFlag"
+      :tip="getTip"
+    ></tip-content-block-component>
   </div>
 </template>
 
 <script>
-import TipContentBlockComponent from "./tipContentBlockComponent.vue";
-import tipIconComponent from "./tipIconComponent.vue";
+import { storeToRefs } from "pinia";
+import { useMainStore } from "@/stores/MainStore";
+import { useWordsStore } from "@/stores/WordsStore";
+import TipContentBlockComponent from "@/components/tip/tipContentBlockComponent.vue";
+import tipIconComponent from "@/components/tip/tipIconComponent.vue";
 
 export default {
-  components: { tipIconComponent, TipContentBlockComponent },
   name: "tipContainerComponent",
+  components: { tipIconComponent, TipContentBlockComponent },
+  setup() {
+    const { whetherTipIsAvailable, getShowTipFlag } = storeToRefs(
+      useMainStore()
+    );
+
+    const { getTip } = storeToRefs(useWordsStore());
+
+    return { whetherTipIsAvailable, getShowTipFlag, getTip };
+  },
 };
 </script>
 
