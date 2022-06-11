@@ -23,9 +23,13 @@ export default {
     tipBoxComponent,
   },
   setup() {
-    const { getFinishGame } = storeToRefs(useMainStore());
+    const { getFinishGame, getNumberOfTipsAvailable } = storeToRefs(
+      useMainStore()
+    );
 
-    const tipAvailable = computed(() => !getFinishGame.value);
+    const tipAvailable = computed(() => {
+      return !getFinishGame.value && getNumberOfTipsAvailable.value > 0;
+    });
 
     return { tipAvailable };
   },
