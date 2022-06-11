@@ -2,7 +2,7 @@
   <div class="container">
     <board-game-component></board-game-component>
     <play-again-component></play-again-component>
-    <tip-box-component v-show="tipAvailable"></tip-box-component>
+    <tip-container-component v-show="tipAvailable"></tip-container-component>
   </div>
 </template>
 
@@ -13,14 +13,14 @@ import { computed } from "vue";
 import { useMainStore } from "@/stores/MainStore";
 import boardGameComponent from "./components/boardGameComponent.vue";
 import playAgainComponent from "./components/playAgainComponent.vue";
-import tipBoxComponent from "./components/tip/tipBoxComponent.vue";
+import tipContainerComponent from "./components/tip/tipContainerComponent.vue";
 
 export default {
   name: "App",
   components: {
     boardGameComponent,
     playAgainComponent,
-    tipBoxComponent,
+    tipContainerComponent,
   },
   setup() {
     const { getFinishGame, getNumberOfTipsAvailable } = storeToRefs(
