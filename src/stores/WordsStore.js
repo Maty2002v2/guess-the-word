@@ -13,6 +13,8 @@ export const useWordsStore = defineStore("Words", {
       state.wordObject === null ? "" : state.wordObject.word,
     getCategpry: (state) =>
       state.wordObject === null ? "" : state.wordObject.category,
+    getCategpry: (state) =>
+      state.wordObject === null ? "" : state.wordObject.tip,
   },
   actions: {
     //http://matikster1.ct8.pl
