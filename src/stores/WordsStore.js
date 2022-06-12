@@ -16,7 +16,6 @@ export const useWordsStore = defineStore("Words", {
     getTip: (state) => (state.wordObject === null ? "" : state.wordObject.tip),
   },
   actions: {
-    //http://matikster1.ct8.pl
     async fetchWord() {
       this.wordObject = null;
       this.loading = true;

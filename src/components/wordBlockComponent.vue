@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { storeToRefs } from "pinia";
 import { useMainStore } from "@/stores/MainStore";
 import letterBlockComponent from "./letterBlockComponent.vue";
 
@@ -33,16 +34,21 @@ export default {
   setup(props, { emit }) {
     let userWord = ref("");
 
+    const { getFinishGame } = storeToRefs(useMainStore());
     const { finishGame, changeGameResult } = useMainStore();
+
+    watch(getFinishGame, (newFinishGame) => {
+      if (!newFinishGame) {
+        userWord.value = "";
+      }
+    });
 
     function saveUserWord(event) {
       userWord.value += event.target.value;
     }
 
     function completeWord() {
-      console.log(userWord.value, props.word, "completeWord");
       if (userWord.value === props.word) {
-        userWord.value = "";
         finishGame();
         changeGameResult(true);
         return;
@@ -50,7 +56,7 @@ export default {
       emit("completeWord");
     }
 
-    return { saveUserWord, completeWord };
+    return { saveUserWord, completeWord, userWord };
   },
 };
 </script>

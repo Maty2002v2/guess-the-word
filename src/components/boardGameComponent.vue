@@ -31,7 +31,6 @@ export default {
     let activeLineNumber = ref(0);
     let counterOfCompletedLines = ref(0);
 
-    // const mainStore = useMainStore();
     const { getFinishGame } = storeToRefs(useMainStore());
     const { finishGame } = useMainStore();
 
@@ -48,15 +47,6 @@ export default {
         )
         .then(() => setFocus());
     });
-
-    // watch(
-    //   st.state,
-    //   (state) => {
-    //     // persist the whole state to the local storage whenever it changes
-    //     localStorage.setItem("piniaState", JSON.stringify(state));
-    //   },
-    //   { deep: true }
-    // );
 
     watch(getFinishGame, (newFinishGame) => {
       if (!newFinishGame) {
