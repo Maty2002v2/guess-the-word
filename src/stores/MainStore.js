@@ -6,7 +6,10 @@ export const useMainStore = defineStore("Main", {
       heart: 1,
       finishedGame: false,
       winningGame: false,
-      numberOfTipsAvailable: 3,
+      numberOfTipsAvailable:
+        localStorage.getItem("numberOfTip") === null
+          ? 3
+          : parseInt(localStorage.getItem("numberOfTip")),
       showTipFlag: false,
     };
   },

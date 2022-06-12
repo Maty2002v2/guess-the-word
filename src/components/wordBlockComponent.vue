@@ -40,7 +40,9 @@ export default {
     }
 
     function completeWord() {
+      console.log(userWord.value, props.word, "completeWord");
       if (userWord.value === props.word) {
+        userWord.value = "";
         finishGame();
         changeGameResult(true);
         return;

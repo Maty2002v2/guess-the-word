@@ -56,7 +56,7 @@ export default {
 
 .blockade {
   opacity: 0.5;
-  cursor: none;
+  cursor: default;
 }
 
 .counterTip {

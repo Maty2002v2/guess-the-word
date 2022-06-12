@@ -1,5 +1,5 @@
 <template>
-  <div class="boardGame" v-if="wordObject">
+  <div class="boardGame">
     <h1 class="category">
       Kategoria: <i>{{ getCategpry }}</i>
     </h1>
@@ -31,10 +31,11 @@ export default {
     let activeLineNumber = ref(0);
     let counterOfCompletedLines = ref(0);
 
+    // const mainStore = useMainStore();
     const { getFinishGame } = storeToRefs(useMainStore());
     const { finishGame } = useMainStore();
 
-    const { getWord, getCategpry, wordObject } = storeToRefs(useWordsStore());
+    const { getWord, getCategpry } = storeToRefs(useWordsStore());
     const { fetchWord } = useWordsStore();
 
     onMounted(() => {
@@ -47,6 +48,15 @@ export default {
         )
         .then(() => setFocus());
     });
+
+    // watch(
+    //   st.state,
+    //   (state) => {
+    //     // persist the whole state to the local storage whenever it changes
+    //     localStorage.setItem("piniaState", JSON.stringify(state));
+    //   },
+    //   { deep: true }
+    // );
 
     watch(getFinishGame, (newFinishGame) => {
       if (!newFinishGame) {
@@ -96,7 +106,6 @@ export default {
     return {
       getWord,
       getCategpry,
-      wordObject,
       nextLineOfWord,
       lineChange,
     };

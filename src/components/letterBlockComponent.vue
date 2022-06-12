@@ -23,6 +23,7 @@ export default {
   emits: ["completeWord", "press"],
   setup(props, { emit }) {
     function goToTheNextLetter(event) {
+      console.log("lll");
       emit("press", event);
       event.target.disabled = true;
       if (event.target.parentNode.nextSibling.firstChild) {
