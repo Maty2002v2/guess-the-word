@@ -22,17 +22,39 @@ export default {
   },
   emits: ["completeWord", "press"],
   setup(props, { emit }) {
-    function goToTheNextLetter(event) {
-      emit("press", event);
-      event.target.disabled = true;
-      if (event.target.parentNode.nextSibling.firstChild) {
-        event.target.parentNode.nextSibling.firstChild.focus();
-      } else {
-        emit("completeWord");
+    let value = ref("");
+
+    function thisIsLetter(value) {
+      const codePolishLetters = [
+        260, 262, 280, 321, 323, 211, 346, 377, 379, 261, 263, 281, 322, 324,
+        243, 347, 378, 380,
+      ];
+
+      if (
+        (value >= 65 && value <= 90) ||
+        (value >= 97 && value <= 122) ||
+        codePolishLetters.find((el) => el === value)
+      ) {
+        return true;
       }
+      return false;
     }
 
-    let value = ref("");
+    function goToTheNextLetter(event) {
+      const firstChild = event.target.parentNode.nextSibling.firstChild;
+
+      if (thisIsLetter(event.data.charCodeAt(0))) {
+        emit("press", event);
+        event.target.disabled = true;
+        if (firstChild) {
+          firstChild.focus();
+        } else {
+          emit("completeWord");
+        }
+      } else {
+        value.value = "";
+      }
+    }
 
     const checkingTheLetter = computed(() => {
       return value.value.toLowerCase() == props.letter;

@@ -43,7 +43,7 @@ export default {
     });
 
     function saveUserWord(event) {
-      userWord.value += event.target.value;
+      userWord.value += event.target.value.toLowerCase();
     }
 
     function completeWord() {
