@@ -24,6 +24,8 @@ export const useWordsStore = defineStore("Words", {
           .then((response) => response.json())
           .then((response) => response);
       } catch (error) {
+        //random() is prototype with main.js
+        this.wordObject = (await import("@/data/words.json")).default.random();
         this.error = error;
       } finally {
         this.loading = false;
