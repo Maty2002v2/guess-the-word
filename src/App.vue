@@ -17,17 +17,18 @@ import { storeToRefs } from "pinia";
 import { useWordsStore } from "@/stores/WordsStore";
 import { useGlobalWatchs } from "@/stores/GlobalWatchs";
 
+import BoardGameComponent from "@/components/TheBoardGameComponent.vue";
+import PlayAgainComponent from "@/components/PlayAgainComponent.vue";
+import TipContainerComponent from "@/components/tip/TipContainerComponent.vue";
+
 import "@/styles/globalStyles.css";
-import boardGameComponent from "./components/boardGameComponent.vue";
-import playAgainComponent from "./components/playAgainComponent.vue";
-import tipContainerComponent from "./components/tip/tipContainerComponent.vue";
 
 export default {
   name: "App",
   components: {
-    boardGameComponent,
-    playAgainComponent,
-    tipContainerComponent,
+    BoardGameComponent,
+    PlayAgainComponent,
+    TipContainerComponent,
   },
   setup() {
     useGlobalWatchs();
@@ -43,10 +44,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* width: 100vw; */
-  /* text-align: center; */
-  /* color: #2c3e50; */
-  /* margin-top: 60px; */
 }
 
 .show {

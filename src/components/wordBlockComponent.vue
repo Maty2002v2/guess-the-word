@@ -14,16 +14,15 @@
 <script>
 import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
+
 import { useMainStore } from "@/stores/MainStore";
-import letterBlockComponent from "./letterBlockComponent.vue";
+
+import LetterBlockComponent from "@/components/LetterBlockComponent.vue";
 
 export default {
-  components: { letterBlockComponent },
-  name: "wordBlockComponent",
+  name: "WordBlockComponent",
+  components: { LetterBlockComponent },
   props: {
-    yourTurnFlag: {
-      type: Boolean,
-    },
     lineNumber: {
       type: Number,
     },
@@ -60,5 +59,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

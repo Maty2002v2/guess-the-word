@@ -4,9 +4,9 @@
       Kategoria: <i>{{ getCategpry }}</i>
     </h1>
     <word-block-component
-      v-for="(x, index) in 5"
-      :key="x"
-      :lineNumber="index"
+      v-for="(numberEl, index) in 5"
+      :key="numberEl"
+      :line-number="index"
       :data-lineNumber="index"
       :word="getWord"
       @complete-word="nextLineOfWord"
@@ -18,14 +18,15 @@
 <script>
 import { ref, onMounted, watch } from "vue";
 import { storeToRefs } from "pinia";
+
 import { useMainStore } from "@/stores/MainStore";
 import { useWordsStore } from "@/stores/WordsStore";
-import wordBlockComponent from "./wordBlockComponent.vue"; //Poprawić i albo wszedzie sciezki katologow albo @
-//dodać loader na plansze (kiedy slowo sie pobiera)
+
+import WordBlockComponent from "@/components/WordBlockComponent.vue";
 
 export default {
-  name: "boardGameComponent",
-  components: { wordBlockComponent },
+  name: "TheBoardGameComponent",
+  components: { WordBlockComponent },
   setup() {
     const wordBlockComponentsArray = ref([]);
     let activeLineNumber = ref(0);
@@ -108,8 +109,8 @@ h3 {
   margin: 40px 0 0;
 }
 ul {
-  list-style-type: none;
   padding: 0;
+  list-style-type: none;
 }
 li {
   display: inline-block;

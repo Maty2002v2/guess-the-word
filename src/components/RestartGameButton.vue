@@ -9,7 +9,7 @@ import { useMainStore } from "@/stores/MainStore"; //pomyslec czy nie zmienic re
 import { useWordsStore } from "@/stores/WordsStore";
 
 export default {
-  name: "buttonRestartGame",
+  name: "RestartGameButton",
   props: {
     win: {
       type: Boolean,
@@ -30,13 +30,16 @@ export default {
 
 <style scoped>
 button {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  margin: 0 10px;
-  font-weight: bold;
   padding: 8px;
+  margin: 0 10px;
+  border: none;
   border-radius: 5px;
+
+  background: transparent;
+
+  font-weight: bold;
+
+  cursor: pointer;
 }
 
 .winButton {

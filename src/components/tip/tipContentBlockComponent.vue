@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "tipContentBlockComponent",
+  name: "TipContentBlockComponent",
   props: {
     tip: {
       type: String,
@@ -21,19 +21,24 @@ export default {
 
 <style scoped>
 blockquote {
-  background: #2c3e50;
-  border-left: 10px solid #42b983;
-  color: #ffffff;
-  margin: 1.5em 10px;
   padding: 0.5em 10px;
+  margin: 1.5em 10px;
+  border-left: 10px solid #42b983;
+
+  background: #2c3e50;
+
+  color: #ffffff;
+
   quotes: "\201C""\201D""\2018""\2019";
 }
 blockquote:before {
-  color: #ffffff;
   content: open-quote;
+
+  margin-right: 0.25em;
+
+  color: #ffffff;
   font-size: 4em;
   line-height: 0.1em;
-  margin-right: 0.25em;
   vertical-align: -0.4em;
 }
 blockquote p {

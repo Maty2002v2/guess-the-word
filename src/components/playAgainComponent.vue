@@ -6,18 +6,18 @@
       }}</i>
       {{ getGameResult ? "udało Ci się!" : "może innym razem." }}
     </h2>
-    <button-restart-game :win="getGameResult" />
+    <restart-game-button :win="getGameResult" />
   </div>
 </template>
 
 <script>
 import { storeToRefs } from "pinia";
 import { useMainStore } from "@/stores/MainStore";
-import buttonRestartGame from "./buttonRestartGame.vue";
+import RestartGameButton from "@/components/RestartGameButton.vue";
 
 export default {
-  components: { buttonRestartGame },
-  name: "playAgaonComponent",
+  name: "PlayAgaonComponent",
+  components: { RestartGameButton },
   setup() {
     const { getFinishGame, getGameResult } = storeToRefs(useMainStore());
 
@@ -28,8 +28,8 @@ export default {
 
 <style scoped>
 h2 {
-  color: #ffffff;
   margin-top: 60px;
+  color: #ffffff;
 }
 
 .winGame {

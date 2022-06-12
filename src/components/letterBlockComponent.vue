@@ -1,11 +1,11 @@
 <template>
   <div>
     <input
-      v-model="value"
       type="text"
-      @input="goToTheNextLetter($event)"
-      :class="{ goodAnswer: checkingTheLetter }"
       class="letterBlock"
+      :class="{ goodAnswer: checkingTheLetter }"
+      v-model="value"
+      @input="goToTheNextLetter($event)"
     />
   </div>
 </template>
@@ -14,7 +14,7 @@
 import { ref, computed } from "vue";
 
 export default {
-  name: "letterBlockComponent",
+  name: "LetterBlockComponent",
   props: {
     letter: {
       type: String,
@@ -44,10 +44,6 @@ export default {
 </script>
 
 <style scoped>
-div {
-  /* display: inline-block; */
-}
-
 input[type="text"] {
   border: none;
   border-radius: 4px;

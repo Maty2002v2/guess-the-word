@@ -13,14 +13,16 @@
 
 <script>
 import { storeToRefs } from "pinia";
+
 import { useMainStore } from "@/stores/MainStore";
 import { useWordsStore } from "@/stores/WordsStore";
-import TipContentBlockComponent from "@/components/tip/tipContentBlockComponent.vue";
-import tipIconComponent from "@/components/tip/tipIconComponent.vue";
+
+import TipContentBlockComponent from "@/components/tip/TipContentBlockComponent.vue";
+import TipIconComponent from "@/components/tip/TipIconComponent.vue";
 
 export default {
-  name: "tipContainerComponent",
-  components: { tipIconComponent, TipContentBlockComponent },
+  name: "TipContainerComponent",
+  components: { TipContentBlockComponent, TipIconComponent },
   setup() {
     const { whetherTipIsAvailable, getShowTipFlag } = storeToRefs(
       useMainStore()
@@ -35,7 +37,7 @@ export default {
 
 <style scoped>
 .tipContainer {
-  margin: auto;
   max-width: 300px;
+  margin: auto;
 }
 </style>

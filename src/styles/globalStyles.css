@@ -5,30 +5,23 @@ body {
 }
 
 .container {
-  /* max-width: 100vw; */
   text-align: center;
 }
 
 .boardGame {
   display: flex;
   flex-direction: column;
-  /* text-align: center; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  max-width: 90vw;
   margin-top: 10vh;
   margin-left: auto;
   margin-right: auto;
-  /* margin: 0 auto; */
-  /* height: 100vh; */
 }
 
 .category {
-  color: #ffffff;
-  margin: 30px auto;
-  text-align: center;
   display: inline-block;
   width: 100%;
+  margin: 20px auto 50px;
+  color: #ffffff;
+  text-align: center;
 }
 
 .category i {
@@ -37,8 +30,10 @@ body {
 
 .wordBlock {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  flex-direction: row;
   margin: 0 auto;
+  justify-content: center;
 }
 
 .letterBlock {
