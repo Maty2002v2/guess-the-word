@@ -1,13 +1,13 @@
 <template>
   <div class="wordBlock">
-    <letter-block-component
+    <letter-block
       v-for="(letter, index) in word"
       :key="index"
       :letter="letter"
       @press="saveUserWord($event)"
       @complete-word="completeWord"
       @click.prevent="$emit('lineChange', lineNumber)"
-    ></letter-block-component>
+    ></letter-block>
   </div>
 </template>
 
@@ -17,11 +17,11 @@ import { storeToRefs } from "pinia";
 
 import { useMainStore } from "@/stores/MainStore";
 
-import LetterBlockComponent from "@/components/LetterBlockComponent.vue";
+import LetterBlock from "@/components/LetterBlock.vue";
 
 export default {
-  name: "WordBlockComponent",
-  components: { LetterBlockComponent },
+  name: "WordBlock",
+  components: { LetterBlock },
   props: {
     lineNumber: {
       type: Number,

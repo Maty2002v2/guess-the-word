@@ -3,7 +3,7 @@
     <h1 class="category">
       Kategoria: <i>{{ getCategpry }}</i>
     </h1>
-    <word-block-component
+    <word-block
       v-for="(numberEl, index) in 5"
       :key="numberEl"
       :line-number="index"
@@ -11,7 +11,7 @@
       :word="getWord"
       @complete-word="nextLineOfWord"
       @line-change="lineChange"
-    ></word-block-component>
+    ></word-block>
   </div>
 </template>
 
@@ -22,11 +22,11 @@ import { storeToRefs } from "pinia";
 import { useMainStore } from "@/stores/MainStore";
 import { useWordsStore } from "@/stores/WordsStore";
 
-import WordBlockComponent from "@/components/WordBlockComponent.vue";
+import WordBlock from "@/components/WordBlock.vue";
 
 export default {
-  name: "TheBoardGameComponent",
-  components: { WordBlockComponent },
+  name: "TheBoardGame",
+  components: { WordBlock },
   setup() {
     const wordBlockComponentsArray = ref([]);
     let activeLineNumber = ref(0);

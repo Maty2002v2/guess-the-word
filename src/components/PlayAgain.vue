@@ -18,7 +18,7 @@ import { useMainStore } from "@/stores/MainStore";
 import RestartGameButton from "@/components/RestartGameButton.vue";
 
 export default {
-  name: "PlayAgaonComponent",
+  name: "PlayAgain",
   components: { RestartGameButton },
   setup() {
     const { getFinishGame, getGameResult } = storeToRefs(useMainStore());

@@ -2,8 +2,7 @@
   <div>
     <input
       type="text"
-      class="letterBlock"
-      :class="{ goodAnswer: checkingTheLetter }"
+      :class="classObject"
       v-model="value"
       @input="goToTheNextLetter($event)"
     />
@@ -14,7 +13,7 @@
 import { ref, computed } from "vue";
 
 export default {
-  name: "LetterBlockComponent",
+  name: "LetterBlock",
   props: {
     letter: {
       type: String,
@@ -56,11 +55,12 @@ export default {
       }
     }
 
-    const checkingTheLetter = computed(() => {
-      return value.value.toLowerCase() == props.letter;
-    });
+    const classObject = computed(() => ({
+      letterBlock: true,
+      goodAnswer: value.value.toLowerCase() == props.letter,
+    }));
 
-    return { value, checkingTheLetter, goToTheNextLetter };
+    return { value, classObject, goToTheNextLetter };
   },
 };
 </script>

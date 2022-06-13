@@ -1,13 +1,13 @@
 <template>
   <div class="tipContainer">
-    <tip-icon-component
+    <tip-icon
       v-show="whetherTipIsAvailable"
       :isBlockade="getShowTipFlag"
-    ></tip-icon-component>
-    <tip-content-block-component
+    ></tip-icon>
+    <tip-content-block
       v-show="getShowTipFlag"
       :tip="getTip"
-    ></tip-content-block-component>
+    ></tip-content-block>
   </div>
 </template>
 
@@ -17,12 +17,12 @@ import { storeToRefs } from "pinia";
 import { useMainStore } from "@/stores/MainStore";
 import { useWordsStore } from "@/stores/WordsStore";
 
-import TipContentBlockComponent from "@/components/tip/TipContentBlockComponent.vue";
-import TipIconComponent from "@/components/tip/TipIconComponent.vue";
+import TipContentBlock from "@/components/tip/TipContentBlock.vue";
+import TipIcon from "@/components/tip/TipIcon.vue";
 
 export default {
   name: "TipContainerComponent",
-  components: { TipContentBlockComponent, TipIconComponent },
+  components: { TipContentBlock, TipIcon },
   setup() {
     const { whetherTipIsAvailable, getShowTipFlag } = storeToRefs(
       useMainStore()

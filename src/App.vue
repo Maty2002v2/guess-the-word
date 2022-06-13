@@ -5,9 +5,9 @@
     style="transition: opacity 0.5s linear"
   >
     <div>
-      <board-game-component></board-game-component>
-      <play-again-component></play-again-component>
-      <tip-container-component></tip-container-component>
+      <board-game></board-game>
+      <play-again></play-again>
+      <tip-container></tip-container>
     </div>
   </div>
 </template>
@@ -17,9 +17,9 @@ import { storeToRefs } from "pinia";
 import { useWordsStore } from "@/stores/WordsStore";
 import { useGlobalWatchs } from "@/stores/GlobalWatchs";
 
-import BoardGameComponent from "@/components/TheBoardGameComponent.vue";
-import PlayAgainComponent from "@/components/PlayAgainComponent.vue";
-import TipContainerComponent from "@/components/tip/TipContainerComponent.vue";
+import BoardGame from "@/components/TheBoardGame.vue";
+import PlayAgain from "@/components/PlayAgain.vue";
+import TipContainer from "@/components/tip/TipContainer.vue";
 
 import "animate.css";
 import "@/styles/globalStyles.css";
@@ -27,9 +27,9 @@ import "@/styles/globalStyles.css";
 export default {
   name: "App",
   components: {
-    BoardGameComponent,
-    PlayAgainComponent,
-    TipContainerComponent,
+    BoardGame,
+    PlayAgain,
+    TipContainer,
   },
   setup() {
     useGlobalWatchs();

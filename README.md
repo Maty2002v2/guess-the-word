@@ -39,31 +39,31 @@
 **Widok ogólny** To właśnie widzi osoba wchodząca pierwszy raz.
 
 <div style="margin-bottom: 60px; text-align: center">
-  <img src="./src/assets/ogolny_widok.png" width="800">
+  <img src="./src/assets/general_view.png" width="800">
 </div>
 
 **Wygrana** Jeśli wpisze odpowiednie literki (bez znaczenia czy duże czy małe).
 
 <div style="margin-bottom: 60px; text-align: center">
-  <img src="./src/assets/wygrana_widok.png" width="800">
+  <img src="./src/assets/win_view.png" width="800">
 </div>
 
 **Przegrana** Jeśli nie uda jej się zgadnąć.
 
 <div style="margin-bottom: 60px; text-align: center">
-  <img src="./src/assets/przegrana_widok.png" width="800">
+  <img src="./src/assets/lost_view.png" width="800">
 </div>
 
 **Użycie podpowiedzi** Na start mamy 3 podpowiedzi. Po zgadnięciu hasła dostajemy +1 a po użyciu -1. Wyświetlone zdanie może nas pośrednio lub bez pośrednio nakierować.
 
 <div style="margin-bottom: 60px; text-align: center">
-  <img src="./src/assets/podpowiedź_widok.png" width="800">
+  <img src="./src/assets/tip_view.png" width="800">
 </div>
 
 **Widok z telefonu**
 
 <div style="margin-bottom: 60px; text-align: center">
-  <img src="./src/assets/telefon_widok.jpg" width="200">
+  <img src="./src/assets/phone_view.jpg" width="200">
 </div>
 
 <!-- If you have screenshots you'd like to share, include them here. -->

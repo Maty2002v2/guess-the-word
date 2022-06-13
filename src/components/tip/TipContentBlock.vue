@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "TipContentBlockComponent",
+  name: "TipContentBlock",
   props: {
     tip: {
       type: String,

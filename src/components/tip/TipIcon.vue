@@ -1,21 +1,18 @@
 <template>
   <div>
-    <div
-      class="icon noselect"
-      :class="{ blockade: isBlockade }"
-      @click="showATip"
-    >
+    <div :class="classObject" @click="showATip">
       ? <span class="counterTip">{{ getNumberOfTipsAvailable }}</span>
     </div>
   </div>
 </template>
 
 <script>
+import { reactive } from "vue";
 import { storeToRefs } from "pinia";
 import { useMainStore } from "@/stores/MainStore";
 
 export default {
-  name: "TipBoxComponent",
+  name: "TipBox",
   props: {
     isBlockade: {
       type: Boolean,
@@ -24,6 +21,11 @@ export default {
   setup(props) {
     const { changeNumberOfTipsAvailable, switchTipFlag } = useMainStore();
     const { getNumberOfTipsAvailable } = storeToRefs(useMainStore());
+    const classObject = reactive({
+      icon: true,
+      noselect: true,
+      blockade: props.isBlockade,
+    });
 
     function showATip() {
       if (!props.isBlockade) {
@@ -32,7 +34,7 @@ export default {
       }
     }
 
-    return { getNumberOfTipsAvailable, showATip };
+    return { getNumberOfTipsAvailable, classObject, showATip };
   },
 };
 </script>

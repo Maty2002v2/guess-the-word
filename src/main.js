@@ -2,8 +2,6 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import App from "./App.vue";
 
-createApp(App).use(createPinia()).mount("#app");
+import "@/utils/prototypes.js";
 
-Array.prototype.random = function () {
-  return this[Math.floor(Math.random() * this.length)];
-};
+createApp(App).use(createPinia()).mount("#app");
