@@ -1,9 +1,11 @@
 <template>
   <div v-show="getFinishGame">
-    <h2>
-      <i :class="[getGameResult ? 'winGame' : 'lostGame']">{{
-        getGameResult ? "Gratulacje, " : "No niestety, "
-      }}</i>
+    <h2 class="palyAgainMessage">
+      <i
+        class="displayInlineBlock animate__animated animate__tada"
+        :class="[getGameResult ? 'winGame' : 'lostGame']"
+        >{{ getGameResult ? "Gratulacje, " : "No niestety, " }}</i
+      >
       {{ getGameResult ? "udało Ci się!" : "może innym razem." }}
     </h2>
     <restart-game-button :win="getGameResult" />
@@ -27,7 +29,7 @@ export default {
 </script>
 
 <style scoped>
-h2 {
+.palyAgainMessage {
   margin-top: 60px;
   color: #ffffff;
 }
@@ -38,5 +40,9 @@ h2 {
 
 .lostGame {
   color: #c6c4c4;
+}
+
+.displayInlineBlock {
+  display: inline-block;
 }
 </style>

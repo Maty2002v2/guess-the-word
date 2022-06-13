@@ -21,6 +21,7 @@ import BoardGameComponent from "@/components/TheBoardGameComponent.vue";
 import PlayAgainComponent from "@/components/PlayAgainComponent.vue";
 import TipContainerComponent from "@/components/tip/TipContainerComponent.vue";
 
+import "animate.css";
 import "@/styles/globalStyles.css";
 
 export default {
