@@ -1,4 +1,4 @@
-# Logistyk Kalkulator
+# Zgadnij słowo
 
 > Podgląd na żywo [_tutaj_](https://gh-pages--phenomenal-tanuki-c2e6f6.netlify.app/).
 
