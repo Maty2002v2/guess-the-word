@@ -1,16 +1,11 @@
 <template>
-  <button
-    class="restart-button"
-    :class="[win ? 'winButton' : 'lostButotn']"
-    @click="restart"
-  >
-    Jeszcze raz
-  </button>
+  <button :class="classObject" @click="restart">Jeszcze raz</button>
 </template>
 
 <script>
+import { computed } from "vue";
 import { useMainStore } from "@/stores/MainStore"; //TODO: pomyslec czy nie zmienic restart na reset (wszedzie)
-import { useWordsStore } from "@/stores/WordsStore"; //class="animate__animated animate__bounce"
+import { useWordsStore } from "@/stores/WordsStore";
 
 export default {
   name: "RestartGameButton",
@@ -19,15 +14,21 @@ export default {
       type: Boolean,
     },
   },
-  setup() {
+  setup(props) {
     const { restartGame } = useMainStore();
     const { fetchWord } = useWordsStore();
+
+    const classObject = computed(() => ({
+      "restart-button": true,
+      winButton: props.win,
+      lostButton: !props.win,
+    }));
 
     function restart() {
       fetchWord().then(() => restartGame()); //lub state.$reset
     }
 
-    return { restart };
+    return { classObject, restart };
   },
 };
 </script>
@@ -56,7 +57,7 @@ export default {
   background: #42b983;
 }
 
-.lostButotn {
+.lostButton {
   color: #2c3e50;
   background: #c6c4c4;
 }

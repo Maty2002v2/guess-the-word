@@ -1,11 +1,9 @@
 <template>
   <div v-show="getFinishGame">
     <h2 class="palyAgainMessage">
-      <i
-        class="displayInlineBlock animate__animated animate__tada"
-        :class="[getGameResult ? 'winGame' : 'lostGame']"
-        >{{ getGameResult ? "Gratulacje, " : "No niestety, " }}</i
-      >
+      <i :class="classObject">{{
+        getGameResult ? "Gratulacje, " : "No niestety, "
+      }}</i>
       {{ getGameResult ? "udało Ci się!" : "może innym razem." }}
     </h2>
     <restart-game-button :win="getGameResult" />
@@ -13,6 +11,7 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useMainStore } from "@/stores/MainStore";
 import RestartGameButton from "@/components/RestartGameButton.vue";
@@ -23,7 +22,16 @@ export default {
   setup() {
     const { getFinishGame, getGameResult } = storeToRefs(useMainStore());
 
-    return { getFinishGame, getGameResult };
+    const classObject = computed(() => ({
+      displayInlineBlock: true,
+      animate__animated: true,
+      animate__tada: getGameResult.value,
+      animate__flash: !getGameResult.value,
+      winGame: getGameResult.value,
+      lostGame: !getGameResult.value,
+    }));
+
+    return { getFinishGame, getGameResult, classObject };
   },
 };
 </script>
